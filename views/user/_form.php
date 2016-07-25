@@ -1,6 +1,5 @@
 <?php
 
-use Yii;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -32,24 +31,32 @@ $this->endBlock();
           <div class="col-sm-6">
             <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
           </div>
+
+          <?php
+          if(Yii::$app->controller->action->id == 'create'){
+           ?>
           <div class="col-sm-6">
             <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
           </div>
+
         </div>
         <div class="row">
+          <?php } ?>
+
           <div class="col-sm-6">
-            <?= $form->field($model, 'role_id')->textInput() ?>
+            <?= $form->field($model, 'role_id')->dropDownList($items,['prompt' => 'Seleccionar Rol'])?>
           </div>
           <div class="col-sm-6">
             <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
           </div>
         </div>
+
         <div class="row">
           <div class="col-sm-6">
-            <?= $form->field($model, 'active')->textInput() ?>
+            <?= $form->field($model, 'active')->checkbox() ?>
           </div>
           <div class="col-sm-6">
-            <?= $form->field($model, 'reset_password')->textInput() ?>
+            <?= $form->field($model, 'reset_password')->checkbox() ?>
           </div>
         </div>
       </div>
