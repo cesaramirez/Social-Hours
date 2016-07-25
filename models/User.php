@@ -53,14 +53,14 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'last_name' => 'Last Name',
+            'name' => 'Nombre',
+            'last_name' => 'Apellido',
             'username' => 'Username',
             'password' => 'Password',
             'role_id' => 'Role ID',
             'email' => 'Email',
-            'active' => 'Active',
-            'reset_password' => 'Reset Password',
+            'active' => 'Activo',
+            'reset_password' => 'Reinicio de Password',
         ];
     }
 

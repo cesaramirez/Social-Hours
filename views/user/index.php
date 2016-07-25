@@ -46,7 +46,11 @@ $this->endBlock();
             // 'role_id',
             // 'email:email',
             // 'active',
-            // 'reset_password',
+             [
+               'filter' => ['1' => 'Si', '0' => 'No'],
+               'format' => 'boolean',
+               'attribute' =>'reset_password'
+             ],
 
             ['class' => 'yii\grid\ActionColumn',
               'header' => 'Herramientas',
