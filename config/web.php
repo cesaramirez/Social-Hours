@@ -6,6 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'es',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -39,7 +40,7 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => ['showScriptName' => false,   // Disable index.php
             'enablePrettyUrl' => true,   // Disable r= routes
-            'enableStrictParsing' => true, //Strict
+            // 'enableStrictParsing' => true, //Strict
             'rules' => [
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
