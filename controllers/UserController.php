@@ -9,7 +9,8 @@ use app\models\search\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\helpers\ArrayHelper;
+use app\models\Role;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -84,8 +85,12 @@ class UserController extends Controller
           }
       }
       else {
+          $role = new Role();
+
+          $items = ArrayHelper::map($role->find()->all(),'id','name');
+
              return $this->render('create', [
-                 'model' => $model,
+                 'model' => $model,'items' => $items,
              ]);
          }
       } catch (Exception $e) {
@@ -104,6 +109,9 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
+        $role = new Role();
+        $items = ArrayHelper::map($role->find()->all(),'id','name');
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -111,6 +119,7 @@ class UserController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'items' => $items
             ]);
         }
     }
