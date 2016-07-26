@@ -54,7 +54,10 @@ $this->endBlock();
         </div>
       </div>
       <div class="box-footer">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord
+            ? Yii::t('yii','Crear')
+            : Yii::t('yii','Update'),
+            ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
       </div>
     </div>
 
