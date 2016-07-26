@@ -172,7 +172,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   KEY `FK_Usuario_Rol_idx` (`role_id`) USING BTREE,
   CONSTRAINT `FK_Usuario_Rol` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Tabla que almacena la imación de los Usuarios del Sistema.';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Tabla que almacena la imación de los Usuarios del Sistema.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +181,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Josué','Morales','Josh','$2a$13$Ah0ZEY.vYfzEr7QOMC/Q7OPhD5I2HqvRi7K9X2myDjFROk9rfKO4S',1,'josue.morales@outlook.com',1,0),(2,'César ','Ramírez','cesar','$2y$13$x4mKIATERHFvn4kKBbKHXuDbv3MKqC1BvJvcK1DRfhwUhK4o/0z8O',1,'ramirezcesar193@gmail.com',1,0);
+INSERT INTO `user` VALUES (1,'Josué','Morales','Josh','$2a$13$Ah0ZEY.vYfzEr7QOMC/Q7OPhD5I2HqvRi7K9X2myDjFROk9rfKO4S',1,'josue.morales@outlook.com',1,0),(2,'César ','Ramírez','cesar','$2y$13$x4mKIATERHFvn4kKBbKHXuDbv3MKqC1BvJvcK1DRfhwUhK4o/0z8O',1,'ramirezcesar193@gmail.com',1,1),(3,'Admin','Admin','admin','$2y$13$CYrtGmvNwYd3Bba2ltado.fLuuiiSLeWlNix4pVLxDgR/F8GLJZkW',1,'email@test.com',1,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -194,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-25 13:54:59
+-- Dump completed on 2016-07-25 21:59:36

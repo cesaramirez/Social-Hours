@@ -39,22 +39,23 @@ if (Yii::$app->controller->action->id === 'login') {
     <body class="hold-transition skin-blue sidebar-mini">
     <?php $this->beginBody() ?>
     <div class="wrapper">
+        <?php if(!Yii::$app->user->isGuest): ?>
+            <?= $this->render(
+                'header.php',
+                ['directoryAsset' => $directoryAsset]
+            ) ?>
 
-        <?= $this->render(
-            'header.php',
-            ['directoryAsset' => $directoryAsset]
-        ) ?>
+            <?= $this->render(
+                'left.php',
+                ['directoryAsset' => $directoryAsset]
+            )
+            ?>
 
-        <?= $this->render(
-            'left.php',
-            ['directoryAsset' => $directoryAsset]
-        )
-        ?>
-
-        <?= $this->render(
-            'content.php',
-            ['content' => $content, 'directoryAsset' => $directoryAsset]
-        ) ?>
+            <?= $this->render(
+                'content.php',
+                ['content' => $content, 'directoryAsset' => $directoryAsset]
+            ) ?>
+        <?php endif; ?>
 
     </div>
 
