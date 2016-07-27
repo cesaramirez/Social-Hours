@@ -78,23 +78,14 @@ class SiteController extends CController
         $model = new LoginForm;
         if(isset($_POST['LoginForm']))
         {
-            $model->load(Yii::$app->request->post());
-            if($model->login()){
-//                print("<pre>".print_r(Yii::$app->user,true)."</pre>");
-//                exit;
-                return $this->redirect(['index']);
-            }
-            else
-            {
-                return $this->render('login', [
-                    'model' => $model,
-                ]);
-            }
-        }else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+          if($model->load(Yii::$app->request->post()) && $model->login()){
+            Yii::$app->session->setFlash("success", "¡Bienvenido!");
+            return $this->redirect(['index']);
+          }
         }
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     /**

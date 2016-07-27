@@ -48,7 +48,7 @@ class CController extends Controller{
                             $a = new models\Action();
                             $a->name = $action->id;
                             $a->friendly_name= $action->id;
-                            $a->controller_id = $c->Id;
+                            $a->controller_id = $c->id;
                             $a->description = "Accion creada automaticamente";
                             $a->save();
                         }
@@ -60,7 +60,7 @@ class CController extends Controller{
                             $p->permission = YII_ENV_DEV == true ? 1 : 0;
                             $p->save();
                         }
-                        if($p->Permiso == 0){
+                        if($p->permission == 0){
                             return $this->redirect(['site/desautorizado']);
                         }
                         return true;

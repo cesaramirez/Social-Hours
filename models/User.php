@@ -42,6 +42,7 @@ class User extends \yii\db\ActiveRecord Implements IdentityInterface
             [['username'], 'string', 'max' => 45],
             [['password'], 'string', 'max' => 500],
             [['email'], 'string', 'max' => 200],
+            [['email'],'email'],
             [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['role_id' => 'id']],
         ];
     }
@@ -53,14 +54,14 @@ class User extends \yii\db\ActiveRecord Implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'last_name' => 'Last Name',
-            'username' => 'Username',
-            'password' => 'Password',
-            'role_id' => 'Role ID',
-            'email' => 'Email',
-            'active' => 'Active',
-            'reset_password' => 'Reset Password',
+            'name' => 'Nombre',
+            'last_name' => 'Apellido',
+            'username' => 'Usuario',
+            'password' => 'Contraseña',
+            'role_id' => 'Rol',
+            'email' => 'Correo Electronico',
+            'active' => 'Activo',
+            'reset_password' => 'Resetear Contraseña',
         ];
     }
 

@@ -8,7 +8,7 @@
                 <img src="http://placehold.it/150x150" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p><?= Yii::$app->user->identity->getFUllName()?></p>
+                <p><?= Yii::$app->user->identity->getFullName()?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>

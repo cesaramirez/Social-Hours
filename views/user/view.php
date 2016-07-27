@@ -13,43 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-            'last_name',
-            'username',
-            //'password',
-            [
-              'attribute' => 'role_id',
-              'value' => $model->role->name,
-            ],
-            'email:email',
-            [
-              'filter' => ['1' => 'Si' , '0' => 'No'],
-              'format' => 'boolean',
-              'attribute' => 'active',
-            ],
-            [
-              'filter' => ['1' => 'Si' , '0' => 'No'],
-              'format' => 'boolean',
-              'attribute' => 'reset_password',
-            ],
-        ],
-    ]) ?>
+  <?= $this->render('_form', [
+      'model' => $model,'items' => $items
+  ]) ?>
 
 </div>

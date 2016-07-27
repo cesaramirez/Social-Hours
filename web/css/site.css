@@ -89,3 +89,21 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+.login-page{
+  background-image: url("../images/minimal.jpg");
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.lowercase{
+  text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

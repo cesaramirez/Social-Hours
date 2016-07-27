@@ -6,7 +6,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
-$this->title = 'Sign In';
+$this->title = 'Iniciar Sesión';
 
 $fieldOptions1 = [
     'options' => ['class' => 'form-group has-feedback'],
@@ -18,7 +18,6 @@ $fieldOptions2 = [
     'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
 ];
 ?>
-
 <div class="login-box">
     <div class="login-logo">
         <a href="#"><b>Admin</b></a>

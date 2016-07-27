@@ -6,7 +6,7 @@ use Yii;
 use app\models\User;
 use app\models\query\UserQuery;
 use app\models\search\UserSearch;
-use yii\web\Controller;
+use app\components\CController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -14,7 +14,7 @@ use app\models\Role;
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends Controller
+class UserController extends CController
 {
     /**
      * @inheritdoc
@@ -87,10 +87,8 @@ class UserController extends Controller
       else {
           $role = new Role();
 
-          $items = ArrayHelper::map($role->find()->all(),'id','name');
-
              return $this->render('create', [
-                 'model' => $model,'items' => $items,
+                 'model' => $model
              ]);
          }
       } catch (Exception $e) {

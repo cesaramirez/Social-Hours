@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "role".
@@ -65,5 +66,15 @@ class Role extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\models\query\RoleQuery(get_called_class());
+    }
+
+    public static function get($status)
+    {
+      $status = empty($status) ? true : $status;
+      $roles = ArrayHelper::map(
+                 self::find()->where(['active'=>$status])->all(),
+               'id','name');
+
+      return empty($roles) ? [] : $roles;
     }
 }
