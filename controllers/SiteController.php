@@ -7,10 +7,9 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
-use app\components\CController;
+use app\components\AccessFilter;
 
-class SiteController extends CController
+class SiteController extends Controller
 {
     /**
      * @inheritdoc
@@ -18,22 +17,16 @@ class SiteController extends CController
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
                 ],
+            ],
+            [
+              'class' => AccessFilter::className(),
+              'overideSession' => ['login','logout'],
+              'overideSecurity' => ['login','logout','index','error','unauthorized']
             ],
         ];
     }
@@ -50,14 +43,6 @@ class SiteController extends CController
         ];
     }
 
-    public function overrideSession(){
-        return ['login','logout'];
-    }
-
-    public function overrideSecurity(){
-        return ['login','logout', 'index', 'error'];
-    }
-
     /**
      * Displays homepage.
      *
@@ -66,6 +51,16 @@ class SiteController extends CController
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionUnauthorized()
+    {
+        return $this->render('desautorizado');
     }
 
     /**
@@ -82,6 +77,9 @@ class SiteController extends CController
             Yii::$app->session->setFlash("success", "¡Bienvenido!");
             return $this->redirect(['index']);
           }
+        }
+        if(Yii::$app->user->identity){
+          return $this->redirect(['index']);
         }
         return $this->render('login', [
             'model' => $model,

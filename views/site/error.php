@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 $this->title = $name;
 ?>
-<section class="content">
+<!-- <section class="content">
 
     <div class="error-page">
         <h2 class="headline text-info"><i class="fa fa-warning text-yellow"></i></h2>
@@ -41,4 +41,22 @@ $this->title = $name;
         </div>
     </div>
 
+</section> -->
+<section class="content">
+  <div class="error-page">
+    <h2 class="headline text-yellow"> 404</h2>
+
+    <div class="error-content">
+      <h3><i class="fa fa-warning text-yellow"></i> Oops! Pagina No Encontrada.</h3>
+
+      <p>
+        No hemos podido encontrar la página que estabas buscando.
+        Puede regresar al <a href="./">Inicio</a>.
+      </p>
+
+    </div>
+    <!-- /.error-content -->
+  </div>
+  <!-- /.error-page -->
 </section>
+<!-- /.content -->

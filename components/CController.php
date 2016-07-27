@@ -6,7 +6,6 @@ use Yii;
 use yii\web\Controller;
 use app\models;
 
-
 class CController extends Controller{
     public function overrideSession(){
         return [];
@@ -17,12 +16,9 @@ class CController extends Controller{
 
     public function beforeAction($action) {
         if(in_array($action->id, $this->overrideSession())){
-                    return true;
+            return true;
         }else{
-//            print("<pre>".print_r(Yii::$app->user,true)."</pre>");
-//                exit;
             if(Yii::$app->user->isGuest){
-
                 return $this->redirect(['site/login']);
             }else{
                 if (in_array($action->id, $this->overrideSecurity())){

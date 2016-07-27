@@ -69,4 +69,18 @@ class Action extends \yii\db\ActiveRecord
     {
         return new \app\models\query\ActionQuery(get_called_class());
     }
+
+    public static function findByController($controller,$action)
+    {
+        $q = self::find()
+             ->joinWith('controller')
+             ->where('controller.name=:nameController')
+             ->andWhere('action.name=:nameAction')
+             ->params([
+                     ':nameController' => $controller,
+                     ':nameAction' => $action])
+             ->one();
+
+        return $q;
+    }
 }
