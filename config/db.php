@@ -6,7 +6,7 @@ return [
     'dsn' => 'mysql:host=159.203.184.160;dbname=base',
 //    'username' => 'cesar',
 //    'password' => '',
-    'username' => 'root',
-    'password' => 'qRTjFFCWQR',
+    'username' => 'ubase',
+    'password' => 'qRTjffCWqR',
     'charset' => 'utf8',
 ];
