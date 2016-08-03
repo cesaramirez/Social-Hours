@@ -35,7 +35,7 @@ $this->endBlock();
         <?php endif ?>
 
           <div class="col-sm-6">
-            <?= $form->field($model, 'role_id')->dropDownList(Role::get("val"),['prompt' => 'Seleccionar Rol'])?>
+            <?= $form->field($model, 'role_id')->dropDownList(Role::get("1"),['prompt' => 'Seleccionar Rol'])?>
           </div>
           <div class="col-sm-6">
             <?= $form->field($model, 'email')
