@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use app\models\Role;
-use yii\base\Controller;
+use yii\web\Controller;
 use app\components\AccessFilter;
 /**
  * UserController implements the CRUD actions for User model.

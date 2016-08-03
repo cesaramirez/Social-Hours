@@ -21,16 +21,6 @@ $this->endBlock();
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <?= $form->field($model, 'name')
-                ->textInput(['maxlength' => true,'class' => 'capitalize']) ?>
-          </div>
-          <div class="col-sm-6">
-            <?= $form->field($model, 'last_name')
-                ->textInput(['maxlength' => true,'class' => 'capitalize']) ?>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
             <?= $form->field($model, 'username')
                 ->textInput(['maxlength' => true,'class' => 'lowercase']) ?>
           </div>
