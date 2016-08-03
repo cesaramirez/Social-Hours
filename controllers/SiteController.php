@@ -25,8 +25,12 @@ class SiteController extends Controller
             ],
             [
               'class' => AccessFilter::className(),
-              'overideSession' => ['login','logout'],
-              'overideSecurity' => ['login','logout','index','error','unauthorized']
+              'overrideSession' => ['login','logout'],
+              'overrideSecurity' => ['login',
+                                    'logout',
+                                    'index',
+                                    'error',
+                                    'unauthorized']
             ],
         ];
     }
