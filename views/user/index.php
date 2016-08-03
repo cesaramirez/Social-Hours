@@ -34,9 +34,6 @@ $this->endBlock();
           'tableOptions' => ['class' => 'table table-bordered table-hover dataTable'],
           'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'name',
-            'last_name',
             'username',
             [
               'filter' => ['1' => 'Si','0' => 'No'],

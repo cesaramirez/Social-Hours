@@ -14,7 +14,7 @@ $this->title = 'Acceso Denegado';
            El Acceso le ha sido Denegado.</h3>
         <p>
           Tu Rol asignado no posee permisos para acceder a tu petición.
-          Pueder regresar al <a href="./">Inicio</a> or try using the search form.
+          Puedes regresar al <a href="./">Inicio</a>.
         </p>
       </div>
     </div>

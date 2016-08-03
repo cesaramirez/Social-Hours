@@ -4,23 +4,24 @@ namespace app\models;
 
 use yii\web\IdentityInterface;
 use yii\base\Security;
-
+use yii\db\ActiveRecord;
+use app\models\Member;
 /**
  * This is the model class for table "user".
  *
  * @property integer $id
- * @property string $name
- * @property string $last_name
  * @property string $username
  * @property string $password
  * @property integer $role_id
  * @property string $email
  * @property integer $active
  * @property integer $reset_password
+ * @property integer $member_id
  *
+ * @property Member $member
  * @property Role $role
  */
-class User extends \yii\db\ActiveRecord Implements IdentityInterface
+class User extends ActiveRecord Implements IdentityInterface
 {
     /**
      * @inheritdoc
@@ -36,14 +37,19 @@ class User extends \yii\db\ActiveRecord Implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'username', 'password', 'role_id', 'email', 'active', 'reset_password'], 'required'],
+            [['username', 'password', 'role_id', 'email',
+              'active', 'reset_password'], 'required'],
             [['role_id', 'active', 'reset_password'], 'integer'],
-            [['name', 'last_name'], 'string', 'max' => 100],
             [['username'], 'string', 'max' => 45],
             [['password'], 'string', 'max' => 500],
             [['email'], 'string', 'max' => 200],
             [['email'],'email'],
-            [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['role_id' => 'id']],
+            [['member_id'], 'exist', 'skipOnError' => true,
+              'targetClass' => Member::className(),
+              'targetAttribute' => ['member_id' => 'id']],
+            [['role_id'], 'exist', 'skipOnError' => true,
+              'targetClass' => Role::className(),
+              'targetAttribute' => ['role_id' => 'id']],
         ];
     }
 
@@ -54,15 +60,22 @@ class User extends \yii\db\ActiveRecord Implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'name' => 'Nombre',
-            'last_name' => 'Apellido',
-            'username' => 'Usuario',
+            'username' => 'Nombre de Usuario',
             'password' => 'Contraseña',
             'role_id' => 'Rol',
             'email' => 'Correo Electronico',
             'active' => 'Activo',
-            'reset_password' => 'Resetear Contraseña',
+            'reset_password' => 'Reiniciar Contraseña',
+            'member_id' => 'Miembro',
         ];
+    }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getMember()
+    {
+       return $this->hasOne(Member::className(), ['id' => 'member_id']);
     }
 
     /**
@@ -143,14 +156,16 @@ class User extends \yii\db\ActiveRecord Implements IdentityInterface
         return self::findOne(['username'=>$_user,'active'=>true]);
     }
 
-    public function validatePassword($password){
+    public function validatePassword($password)
+    {
         $passwordHelper = new Security();
         return $passwordHelper->validatePassword($password, $this->password);
-
     }
 
     public function getFullName()
     {
-        return $this->name." ".$this->last_name;
+        return isset($this->member) ?
+                $this->member->name." ".$this->member->last_name :
+                $this->username;
     }
 }
