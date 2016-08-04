@@ -9,17 +9,21 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="position-form">
+  <div class="box">
+    <div class="box-body">
+      <?php $form = ActiveForm::begin(); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+      <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+      <?= $form->field($model, 'active')->checkbox() ?>
 
-    <?= $form->field($model, 'active')->checkbox() ?>
+      <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a('Atrás',['/position'], ['class' => 'btn btn-danger']) ?>
+      </div>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+      <?php ActiveForm::end(); ?>
+
     </div>
-
-    <?php ActiveForm::end(); ?>
-
+  </div>
 </div>

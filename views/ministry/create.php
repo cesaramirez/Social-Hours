@@ -6,13 +6,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Ministry */
 
-$this->title = 'Create Ministry';
-$this->params['breadcrumbs'][] = ['label' => 'Ministries', 'url' => ['index']];
+$this->title = 'Crear Ministerio';
+$this->params['breadcrumbs'][] = ['label' => 'Ministerios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ministry-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -3,13 +3,14 @@
 namespace app\models;
 
 use Yii;
-
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "country".
  *
  * @property integer $id
- * @property string $nombre
- * @property boolean $activo
+ * @property string $name
+ * @property boolean $active
+ * @property string $ISO
  *
  * @property Member[] $members
  */
@@ -29,9 +30,10 @@ class Country extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre'], 'required'],
-            [['activo'], 'boolean'],
-            [['nombre'], 'string', 'max' => 45],
+            [['name', 'ISO'], 'required'],
+            [['active'], 'boolean'],
+            [['name'], 'string', 'max' => 25],
+            [['ISO'], 'string', 'max' => 5],
         ];
     }
 
@@ -42,8 +44,9 @@ class Country extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nombre' => 'Nombre',
-            'activo' => 'Activo',
+            'name' => 'Nombre',
+            'active' => 'Activo',
+            'ISO' => 'ISO',
         ];
     }
 
@@ -53,5 +56,14 @@ class Country extends \yii\db\ActiveRecord
     public function getMembers()
     {
         return $this->hasMany(Member::className(), ['country_id' => 'id']);
+    }
+
+    public static function get($param)
+    {
+    $active = empty($param) ? true : $param;
+    $countries = ArrayHelper::map(self::find()->where(['active'=>$active])
+                                              ->all(),'id','name');
+
+    return empty($countries) ? [] : $countries;
     }
 }

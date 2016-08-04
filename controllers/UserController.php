@@ -74,7 +74,7 @@ class UserController extends Controller
 
           if($model->load(Yii::$app->request->post())){
             $user = User::findByUsername($model->username);
-            if($user->username){
+            if(!empty($user)){
               Yii::$app->session->setFlash("danger", "¡El Usuario ya ha Registrado!");
               return $this->render('create', [
                 'model' => $model,
