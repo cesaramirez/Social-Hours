@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Position */
+/* @var $model app\models\Member */
 
-$this->title = 'Crear Cargo';
-$this->params['breadcrumbs'][] = ['label' => 'Positions', 'url' => ['index']];
+$this->title = 'Crear Miembro';
+$this->params['breadcrumbs'][] = ['label' => 'Miembros', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="position-create">
+<div class="member-create">
 
     <?= $this->render('_form', [
         'model' => $model,

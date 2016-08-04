@@ -66,8 +66,16 @@
                         'url' => '#',
                         'items' => [
                             ['label' => 'Roles', 'icon' => 'fa fa-file-code-o', 'url' => ['/role'],],
+
                             ['label' => 'Controladores', 'icon' => 'fa fa-file-code-o', 'url' => ['/controler'],],
                             ['label' => 'Usuarios', 'icon' => 'fa fa-file-code-o', 'url' => ['/user'],],
+
+                            ['label' => 'Ministerios', 'icon' => 'fa fa-file-code-o', 'url' => ['/ministry'],],
+                            ['label' => 'Filiales', 'icon' => 'fa fa-file-code-o', 'url' => ['/affiliate'],],
+                            ['label' => 'Cargos', 'icon' => 'fa fa-file-code-o', 'url' => ['/position'],],
+                            ['label' => 'Miembros', 'icon' => 'fa fa-file-code-o', 'url' => ['/member'],],
+                            ['label' => 'Paises', 'icon' => 'fa fa-file-code-o', 'url' => ['/country'],],
+                            ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
                             [
                                 'label' => 'Level One',
                                 'icon' => 'fa fa-circle-o',

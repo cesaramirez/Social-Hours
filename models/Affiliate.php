@@ -9,7 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
- * @property boolean $allows ministry
+ * @property boolean $allows_ministry
  * @property boolean $active
  *
  * @property AffiliateMinistry[] $affiliateMinistries
@@ -31,7 +31,7 @@ class Affiliate extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['allows ministry', 'active'], 'boolean'],
+            [['allows_ministry', 'active'], 'boolean'],
             [['name'], 'string', 'max' => 45],
         ];
     }
@@ -43,9 +43,9 @@ class Affiliate extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'allows ministry' => 'Allows Ministry',
-            'active' => 'Active',
+            'name' => 'Nombre',
+            'allows_ministry' => 'Permite Ministerios',
+            'active' => 'Activo',
         ];
     }
 
