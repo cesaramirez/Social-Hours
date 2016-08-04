@@ -45,9 +45,9 @@ class Role extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'active' => 'Active',
+            'name' => 'Nombre',
+            'description' => 'Descripción',
+            'active' => 'Activo',
         ];
     }
 

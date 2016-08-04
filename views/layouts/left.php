@@ -66,7 +66,8 @@
                         'url' => '#',
                         'items' => [
                             ['label' => 'Roles', 'icon' => 'fa fa-file-code-o', 'url' => ['/role'],],
-                            ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
+                            ['label' => 'Controladores', 'icon' => 'fa fa-file-code-o', 'url' => ['/controler'],],
+                            ['label' => 'Usuarios', 'icon' => 'fa fa-file-code-o', 'url' => ['/user'],],
                             [
                                 'label' => 'Level One',
                                 'icon' => 'fa fa-circle-o',

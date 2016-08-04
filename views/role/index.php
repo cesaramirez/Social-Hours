@@ -19,26 +19,36 @@ $this->endBlock();
   <div class="box">
     <div class="box-body">
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-        <p><?= Html::a('Crear Role', ['create'], ['class' => 'btn btn-success']) ?></p>
-        <?php Pjax::begin(); ?>      
+        <p><?= Html::a('Crear', ['create'], ['class' => 'btn btn-success']) ?></p>
+        <?php Pjax::begin(['id' => 'role-index', 'timeout' => false,'enablePushState' => false]);  ?>
             <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-                  'id',
             'name',
             'description',
-            'active',
+            [
+              'attribute' => 'active',
+              'value' => function($model, $key, $index, $column) {
+                          return $model->active == 0 ? 'No' : 'Si';
+                         },
+              'contentOptions' => ['style'=>'text-align: center; width: 5%'],
+              'filter' => Html::activeDropDownList($searchModel,
+                          'active',
+                          ['0' => 'No','1' => 'Si'],
+                          ['class' => 'form-control' , 'prompt' => ''])
+            ],
 
-              ['class' => 'yii\grid\ActionColumn',
-              'header' => 'Herramientas',
-              'headerOptions'=>['style'=>'text-align: center'],
-              'contentOptions'=>['style'=>'text-align: center']],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{update} {delete}',
+             'header' => 'Herramientas',
+             'headerOptions' => ['style'=>'text-align: center'],
+             'contentOptions' => ['style'=>'text-align: center'],
+            ],
           ],
       ]); ?>
-        <?php Pjax::end(); ?>    
+        <?php Pjax::end(); ?>
     </div>
   </div>
 </div>

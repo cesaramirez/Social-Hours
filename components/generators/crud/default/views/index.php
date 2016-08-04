@@ -34,8 +34,8 @@ $this->endBlock();
     <?php if(!empty($generator->searchModelClass)): ?>
     <?= "    <?php " . ($generator->indexWidgetType === 'grid' ? "// " : "") ?>echo $this->render('_search', ['model' => $searchModel]); ?>
     <?php endif; ?>
-    <p><?= "<?= " ?>Html::a(<?= $generator->generateString('Crear ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-success']) ?></p>
-        <?= $generator->enablePjax ? '<?php Pjax::begin(); ?>' : '' ?>
+    <p><?= "<?= " ?>Html::a(<?= $generator->generateString('Crear', ['create'], ['class' => 'btn btn-success']) ?></p>
+        <?= $generator->enablePjax ? '<?php Pjax::begin([\'id\' => \'-index\', \'timeout\' => false,\'enablePushState\' => false]); \ ?>' : '' ?>
       <?php echo "\n"; ?>
       <?php if ($generator->indexWidgetType === 'grid'): ?>
       <?= "<?= " ?>GridView::widget([
