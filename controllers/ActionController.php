@@ -3,17 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Role;
-use app\models\search\RoleSearch;
+use app\models\Action;
+use app\models\search\ActionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\components\AccessFilter;
 
 /**
- * RoleController implements the CRUD actions for Role model.
+ * ActionController implements the CRUD actions for Action model.
  */
-class RoleController extends Controller
+class ActionController extends Controller
 {
     /**
      * @inheritdoc
@@ -29,17 +29,19 @@ class RoleController extends Controller
             ],
             [
               'class' => AccessFilter::className(),
+              'overrideSession' => [],
+              'overrideSecurity' => []
             ],
         ];
     }
 
     /**
-     * Lists all Role models.
+     * Lists all Action models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new RoleSearch();
+        $searchModel = new ActionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,16 +51,28 @@ class RoleController extends Controller
     }
 
     /**
-     * Creates a new Role model.
+     * Displays a single Action model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Creates a new Action model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Role();
+        $model = new Action();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -67,7 +81,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Updates an existing Role model.
+     * Updates an existing Action model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -86,7 +100,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Deletes an existing Role model.
+     * Deletes an existing Action model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -99,15 +113,15 @@ class RoleController extends Controller
     }
 
     /**
-     * Finds the Role model based on its primary key value.
+     * Finds the Action model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Role the loaded model
+     * @return Action the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Role::findOne($id)) !== null) {
+        if (($model = Action::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

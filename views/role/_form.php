@@ -9,19 +9,32 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="role-form">
+  <div class="box">
+    <!-- <div class="box-header">
+      <h2><?= Html::encode($this->title) ?></h2>
+    </div> -->
+    <div class="box-body">
+      <div class="row">
+        <?php $form = ActiveForm::begin(); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($model,
+                         'name',
+                         ['options' => ['class' => 'col-sm-12']])
+                         ->textInput(['maxlength' => true,
+                                      'class' => 'capitalize form-control',
+                                      'disabled' => Yii::$app->controller->action->id == 'update' ? true : false]) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'description', ['options' => ['class' => 'col-sm-12']])->textArea(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'active', ['options' => ['class' => 'col-sm-12']])->checkbox() ?>
 
-    <?= $form->field($model, 'active')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+      </div>
+     </div>
+      <div class="box-footer">
+          <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+          <?= Html::a('Átras', ['/role'], ['class' => 'btn btn-danger']); ?>
+      </div>
 
     <?php ActiveForm::end(); ?>
-
+  </div>
 </div>

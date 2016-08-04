@@ -4,7 +4,7 @@ namespace app\components;
 
 use Yii;
 use yii\base\ActionFilter;
-use app\models\Controller;
+use app\models\Controler;
 use app\models\Action;
 use app\models\RolePermissions;
 
@@ -25,11 +25,11 @@ class AccessFilter extends ActionFilter{
                     return true;
                 }
                 else{
-                    $c = Controller::findOne([
+                    $c = Controler::findOne([
                            'name'=>$action->controller->id
                          ]);
                     if(empty($c)){
-                        $c = new Controller();
+                        $c = new Controler();
                         $c->name = $action->controller->id;
                         $c->friendly_name= $action->controller->id;
                         $c->description = "Controlador creado automaticamente";

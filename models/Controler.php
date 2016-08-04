@@ -14,8 +14,10 @@ use Yii;
  *
  * @property Action[] $actions
  */
-class Controller extends \yii\db\ActiveRecord
+class Controler extends \yii\db\ActiveRecord
 {
+
+    public $action;
     /**
      * @inheritdoc
      */
@@ -43,9 +45,9 @@ class Controller extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'friendly_name' => 'Friendly Name',
-            'description' => 'Description',
+            'name' => 'Nombre',
+            'friendly_name' => 'Nombre Amigable',
+            'description' => 'Descripción',
         ];
     }
 

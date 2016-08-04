@@ -35,7 +35,7 @@ class Action extends \yii\db\ActiveRecord
             [['controller_id'], 'integer'],
             [['name', 'friendly_name'], 'string', 'max' => 100],
             [['description'], 'string', 'max' => 500],
-            [['controller_id'], 'exist', 'skipOnError' => true, 'targetClass' => Controller::className(), 'targetAttribute' => ['controller_id' => 'id']],
+            [['controller_id'], 'exist', 'skipOnError' => true, 'targetClass' => Controler::className(), 'targetAttribute' => ['controller_id' => 'id']],
         ];
     }
 
@@ -58,7 +58,7 @@ class Action extends \yii\db\ActiveRecord
      */
     public function getController()
     {
-        return $this->hasOne(Controller::className(), ['id' => 'controller_id']);
+        return $this->hasOne(Controler::className(), ['id' => 'controller_id']);
     }
 
     /**
