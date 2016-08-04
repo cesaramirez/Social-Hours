@@ -22,7 +22,7 @@ use Yii;
  * @property string $inscription_date
  * @property string $created_at
  * @property string $updated_at
- * @property string $membercol
+ * @property string $active
  *
  * @property Country $country
  * @property Status $status
@@ -50,7 +50,7 @@ class Member extends \yii\db\ActiveRecord
             [['code'], 'string', 'max' => 15],
             [['name', 'last_name'], 'string', 'max' => 50],
             [['document_number'], 'string', 'max' => 25],
-            [['email', 'membercol'], 'string', 'max' => 150],
+            [['email', 'active'], 'string', 'max' => 150],
             [['address'], 'string', 'max' => 250],
             [['inscription_date'], 'string', 'max' => 45],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Country::className(), 'targetAttribute' => ['country_id' => 'id']],
@@ -66,20 +66,20 @@ class Member extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'code' => 'Code',
-            'name' => 'Name',
-            'last_name' => 'Last Name',
-            'document_number' => 'Document Number',
-            'birthdate' => 'Birthdate',
+            'name' => 'Nombres',
+            'last_name' => 'Apellidos',
+            'document_number' => 'No. de Documento',
+            'birthdate' => 'Fecha de Nacimiento',
             'country_id' => 'Country ID',
             'status_id' => 'Status ID',
-            'email' => 'Email',
-            'baptism_date' => 'Baptism Date',
-            'address' => 'Address',
+            'email' => 'e-Mail',
+            'baptism_date' => 'Fecha de Bautizo',
+            'address' => 'Direccion',
             'affiliate_id' => 'Affiliate ID',
-            'inscription_date' => 'Inscription Date',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'membercol' => 'Membercol',
+            'inscription_date' => 'Fecha de Inscripción',
+            'created_at' => 'Creado el',
+            'updated_at' => 'Actualizado el',
+            'active' => 'Activo',
         ];
     }
 

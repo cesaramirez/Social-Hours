@@ -3,17 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Ministry;
-use app\models\MinistrySearch;
+use app\models\Affiliate;
+use app\models\AffiliateSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\components\AccessFilter;
 
 /**
- * MinistryController implements the CRUD actions for Ministry model.
+ * AffiliateController implements the CRUD actions for Affiliate model.
  */
-class MinistryController extends Controller
+class AffiliateController extends Controller
 {
     /**
      * @inheritdoc
@@ -27,21 +26,16 @@ class MinistryController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-            [
-              'class' => AccessFilter::className(),
-              'overrideSession' => [],
-              'overrideSecurity' => []
-            ],
         ];
     }
 
     /**
-     * Lists all Ministry models.
+     * Lists all Affiliate models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MinistrySearch();
+        $searchModel = new AffiliateSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -51,7 +45,7 @@ class MinistryController extends Controller
     }
 
     /**
-     * Displays a single Ministry model.
+     * Displays a single Affiliate model.
      * @param integer $id
      * @return mixed
      */
@@ -63,13 +57,13 @@ class MinistryController extends Controller
     }
 
     /**
-     * Creates a new Ministry model.
+     * Creates a new Affiliate model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Ministry();
+        $model = new Affiliate();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -81,7 +75,7 @@ class MinistryController extends Controller
     }
 
     /**
-     * Updates an existing Ministry model.
+     * Updates an existing Affiliate model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -100,7 +94,7 @@ class MinistryController extends Controller
     }
 
     /**
-     * Deletes an existing Ministry model.
+     * Deletes an existing Affiliate model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -113,15 +107,15 @@ class MinistryController extends Controller
     }
 
     /**
-     * Finds the Ministry model based on its primary key value.
+     * Finds the Affiliate model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Ministry the loaded model
+     * @return Affiliate the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Ministry::findOne($id)) !== null) {
+        if (($model = Affiliate::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

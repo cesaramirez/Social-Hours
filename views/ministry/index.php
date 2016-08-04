@@ -2,33 +2,46 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\MinistrySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ministries';
+$this->title = 'Ministerios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ministry-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+  <div class="box">
+    <div class="box-body">
     <p>
-        <?= Html::a('Create Ministry', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'filterPosition' => 'header',
+        'showFooter' => true,
+        'showHeader' => true,
+        'tableOptions' => ['class' => 'table table-bordered table-hover
+        dataTable'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'name',
-            'active:boolean',
+            [
+              'attribute' => 'active',
+              'format' => 'boolean',
+              'filter' => ['1' => 'Si', '0' => 'No']
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'header' => 'Herramientas',
+            'headerOptions' => ['style' => 'text-align: center'],
+            'contentOptions' => ['style' => 'text-align: center']
+            ],
         ],
-    ]); ?>
+    ]);
+    ?>
+    </div>
+  </div>
 </div>

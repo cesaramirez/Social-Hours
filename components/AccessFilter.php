@@ -56,7 +56,6 @@ class AccessFilter extends ActionFilter{
                         $p->action_id = $a->id;
                         $p->role_id = Yii::$app->user->identity->role_id;
                         $p->permission = YII_ENV_DEV == true ? 1 : 0;
-                        $p->permission = 0;
                         $p->save();
                     }
                     if($p->permission == 0){
