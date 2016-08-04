@@ -60,6 +60,32 @@
                             ],
                         ],
                     ],
+                    [
+                        'label' => 'Administración',
+                        'icon' => 'fa fa-share',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Roles', 'icon' => 'fa fa-file-code-o', 'url' => ['/role'],],
+                            ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
+                            [
+                                'label' => 'Level One',
+                                'icon' => 'fa fa-circle-o',
+                                'url' => '#',
+                                'items' => [
+                                    ['label' => 'Level Two', 'icon' => 'fa fa-circle-o', 'url' => '#',],
+                                    [
+                                        'label' => 'Level Two',
+                                        'icon' => 'fa fa-circle-o',
+                                        'url' => '#',
+                                        'items' => [
+                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
+                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
             ]
         ) ?>

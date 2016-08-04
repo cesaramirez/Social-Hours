@@ -23,8 +23,7 @@ $this->endBlock();
         <p>
           <?= Html::a('Crear', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
-        <?php Pjax::begin(['id' => 'user-index', 'timeout' => false,
-'enablePushState' => false]); ?>
+        <?php Pjax::begin(['id' => 'user-index', 'timeout' => false,'enablePushState' => false]); ?>
         <?= GridView::widget([
           'dataProvider' => $dataProvider,
           'filterModel' => $searchModel,

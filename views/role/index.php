@@ -9,27 +9,36 @@ use yii\widgets\Pjax;
 
 $this->title = 'Roles';
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->beginBlock('content-header');
+
+echo $this->title . "<small>Index</small>";
+$this->endBlock();
 ?>
 <div class="role-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Role', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+  <div class="box">
+    <div class="box-body">
+            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+        <p><?= Html::a('Crear Role', ['create'], ['class' => 'btn btn-success']) ?></p>
+        <?php Pjax::begin(); ?>      
+            <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+                  'id',
             'name',
             'description',
             'active',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-<?php Pjax::end(); ?></div>
+              ['class' => 'yii\grid\ActionColumn',
+              'header' => 'Herramientas',
+              'headerOptions'=>['style'=>'text-align: center'],
+              'contentOptions'=>['style'=>'text-align: center']],
+          ],
+      ]); ?>
+        <?php Pjax::end(); ?>    
+    </div>
+  </div>
+</div>
