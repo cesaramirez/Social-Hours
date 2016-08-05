@@ -29,12 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
-            [
-              'filter' => ['1' => 'Si', '0' => 'No'],
-              'format' => 'boolean',
-              'attribute' => 'active'
-            ],
-
+            
             ['class' => 'yii\grid\ActionColumn',
              'header' => 'Herramientas',
              'headerOptions' => ['style' => 'text-align: center'],

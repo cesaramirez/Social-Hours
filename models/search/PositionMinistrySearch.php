@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\search;
 
 use Yii;
 use yii\base\Model;
@@ -12,13 +12,16 @@ use app\models\PositionMinistry;
  */
 class PositionMinistrySearch extends PositionMinistry
 {
+    public $active;
+    public $position_name;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'ministry_id', 'position_id', 'member_id'], 'integer'],
+            [['id', 'ministry_id', 'position_id','active'], 'integer'],
+            [['position_name'],'safe']
         ];
     }
 
@@ -41,13 +44,14 @@ class PositionMinistrySearch extends PositionMinistry
     public function search($params)
     {
         $query = PositionMinistry::find();
-
+        $query->joinWith('position');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        $dataProvider->sort->attributes['Position'] = ['asc' => ['position.name'=>SORT_ASC],
+                                                       'desc' => ['position.name'=>SORT_DESC]];
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,8 +65,15 @@ class PositionMinistrySearch extends PositionMinistry
             'id' => $this->id,
             'ministry_id' => $this->ministry_id,
             'position_id' => $this->position_id,
-            'member_id' => $this->member_id,
+            'position.active' => $this->active,
         ]);
+
+        $query->andFilterWhere([
+          'like',
+          'position.name',
+          $this->position_name
+        ]);
+
 
         return $dataProvider;
     }

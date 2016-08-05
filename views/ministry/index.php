@@ -33,11 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
               'format' => 'boolean',
               'filter' => ['1' => 'Si', '0' => 'No']
             ],
-
             ['class' => 'yii\grid\ActionColumn',
             'header' => 'Herramientas',
             'headerOptions' => ['style' => 'text-align: center'],
-            'contentOptions' => ['style' => 'text-align: center']
+            'contentOptions' => ['style' => 'text-align: center'],
+            'template' => '{position} {view} {update} {delete}',
+            'buttons' => [
+                'position' => function ($url, $model, $key) {
+                                return Html::a('<span class="glyphicon glyphicon-plus"></span>', $url, [
+                                'title' => 'Cargos',
+                              ]);
+                              }
+            ],
             ],
         ],
     ]);

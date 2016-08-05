@@ -15,8 +15,6 @@ use yii\widgets\ActiveForm;
 
       <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-      <?= $form->field($model, 'active')->checkbox() ?>
-
       <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a('Atrás',['/position'], ['class' => 'btn btn-danger']) ?>

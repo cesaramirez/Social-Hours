@@ -10,7 +10,8 @@ use Yii;
  * @property integer $id
  * @property integer $ministry_id
  * @property integer $position_id
- * @property integer $member_id
+ * @property integer $active
+ * @property string $description
  *
  * @property Ministry $ministry
  * @property Position $position
@@ -31,8 +32,8 @@ class PositionMinistry extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ministry_id', 'position_id', 'member_id'], 'required'],
-            [['ministry_id', 'position_id', 'member_id'], 'integer'],
+            [['ministry_id', 'position_id', 'active'], 'required'],
+            [['ministry_id', 'position_id'], 'integer'],
             [['ministry_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ministry::className(), 'targetAttribute' => ['ministry_id' => 'id']],
             [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => Position::className(), 'targetAttribute' => ['position_id' => 'id']],
         ];
@@ -45,9 +46,10 @@ class PositionMinistry extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'ministry_id' => 'Ministry ID',
-            'position_id' => 'Position ID',
-            'member_id' => 'Member ID',
+            'ministry_id' => 'ID de Ministerio',
+            'position_id' => 'ID de Cargo',
+            'active' => 'Activo',
+            'description' => 'Descripcion',
         ];
     }
 

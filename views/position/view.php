@@ -35,8 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode' => false,
         'attributes' => [
-            'name',
-            'active:boolean',
+            'name'
         ],
     ])
     ?>

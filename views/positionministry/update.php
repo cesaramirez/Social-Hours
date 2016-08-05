@@ -2,15 +2,15 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model app\models\PositionMinistry */
 
-$this->title = 'Create Position Ministry';
+$this->title = 'Update Position Ministry: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Position Ministries', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id, 'ministry_id' => $model->ministry_id]];
+$this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="position-ministry-create">
+<div class="position-ministry-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

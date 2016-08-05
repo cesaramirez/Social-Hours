@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Ministry;
 use app\models\MinistrySearch;
+use app\models\search\PositionMinistrySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -110,6 +111,21 @@ class MinistryController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionPosition($id)
+    {
+
+        $searchModel = new PositionMinistrySearch();
+        $searchModel->ministry_id = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = $this->findModel($id);
+
+        return $this->render('/positionministry/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'model' => $model
+        ]);
     }
 
     /**

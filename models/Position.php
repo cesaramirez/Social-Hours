@@ -30,7 +30,6 @@ class Position extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['active'], 'boolean'],
             [['name'], 'string', 'max' => 45],
         ];
     }
@@ -43,7 +42,6 @@ class Position extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'active' => 'Active',
         ];
     }
 
