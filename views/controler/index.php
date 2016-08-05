@@ -34,12 +34,12 @@ $this->endBlock();
               'contentOptions'=>['style'=>'text-align: center'],
               'buttons'=>[
                 'action' => function ($url, $model, $key) {
-                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                    return Html::a('<span class="glyphicon glyphicon-plus"></span>', $url, [
                             'title' => 'Acciones',
                     ]);
                 },
                 'edit' => function ($url, $model, $key) {
-                    return Html::a('<span class="fa fa-pencil"></span>', $url, [
+                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                             'title' => 'Actualizar',
                     ]);
                 },
@@ -47,7 +47,7 @@ $this->endBlock();
             ],
           ],
       ]); ?>
-        <?php Pjax::end(); ?>
+        <?php Pjax::end(); ?>,
     </div>
   </div>
 </div>

@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use kartik\typeahead\Typeahead;
+use yii\jui\AutoComplete;
+use yii\web\JsExpression;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\PositionMinistry */
 /* @var $form yii\widgets\ActiveForm */
@@ -15,6 +18,7 @@ use kartik\typeahead\Typeahead;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'ministry_id')->hiddenInput()->label(false) ?>
+        <?= $form->field($model, 'position_id')->hiddenInput()->label(false) ?>
 
         <?= Html::label('Cargo', 'for'); ?>
         <?= Typeahead::widget([
@@ -34,6 +38,22 @@ use kartik\typeahead\Typeahead;
                   ]
               ]
           ])
+          ?>
+
+          <label for="position">Cargo</label>
+          <?= AutoComplete::widget([
+              'name' => 'position_name',
+              'clientOptions' => [
+                  'source' => new JsExpression("function(request, response) {
+                                  $.getJSON('".Url::to(["positionministry/get-positions"])."', {
+                                      term: request.term
+                                  }, response);
+                              }"),
+                  'select' => new JsExpression("function( event, ui ){
+                                    $('#positionministry-position_id').val(ui.item.id)
+                                  }"),
+              ]
+          ]);
           ?>
           <?= $form->field($model, 'description')->textarea() ?>
 

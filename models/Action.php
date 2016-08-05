@@ -46,9 +46,9 @@ class Action extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'friendly_name' => 'Friendly Name',
-            'description' => 'Description',
+            'name' => 'Nombre',
+            'friendly_name' => 'Nombre Amigable',
+            'description' => 'Descripción',
             'controller_id' => 'Controller ID',
         ];
     }

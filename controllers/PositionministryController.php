@@ -109,13 +109,13 @@ class PositionministryController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionGetPositions($q)
+    public function actionGetPositions($term)
     {
       $query = new Query;
 
       $query->select(['id','name'])
           ->from('position')
-          ->where('name LIKE "%' . $q .'%"')
+          ->where('name LIKE "%' . $term .'%"')
           ->orderBy('name');
 
       $command = $query->createCommand();
@@ -123,7 +123,7 @@ class PositionministryController extends Controller
       $out = [];
 
       foreach ($data as $d) {
-          $out[] = ['name' => $d['name'],
+          $out[] = ['value' => $d['name'],
                     'id' => $d['id']
                    ];
       }

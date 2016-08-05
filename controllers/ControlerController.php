@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Controler;
 use app\models\search\ControlerSearch;
+use app\models\search\ActionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -110,6 +111,21 @@ class ControlerController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionAction($id)
+    {
+      $searchModel = new ActionSearch();
+      $searchModel->controller_id = $id;
+      $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+      $model =  $this->findModel($id);
+
+      return $this->render('/action/index', [
+          'searchModel' => $searchModel,
+          'dataProvider' => $dataProvider,
+          'model' => $model,
+          'id' => $id
+      ]);
     }
 
     /**
