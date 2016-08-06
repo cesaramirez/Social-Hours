@@ -5,14 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\PositionMinistry */
 
-$this->title = 'Update Position Ministry: ' . $model->id;
+$this->title = 'Actualizar Cargo: ' . $model->position->name;
 $this->params['breadcrumbs'][] = ['label' => 'Position Ministries', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id, 'ministry_id' => $model->ministry_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => $model->position->name, 'url' => ['view', 'id' => $model->id, 'ministry_id' => $model->ministry_id]];
+$this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="position-ministry-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -120,7 +120,8 @@ class PositionministryController extends Controller
      */
     public function actionUpdate($id, $ministry_id)
     {
-        $model = $this->findModel($id, $ministry_id);
+        $model = PositionMinistry::findOne(['id' => $id, 
+                                   'ministry_id' =>$ministry_id]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'ministry_id' => $model->ministry_id]);

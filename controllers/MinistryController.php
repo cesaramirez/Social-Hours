@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Ministry;
 use app\models\MinistrySearch;
+use app\models\PositionMinistry;
 use app\models\search\PositionMinistrySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -125,6 +126,17 @@ class MinistryController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'model' => $model
+        ]);
+    }
+
+    public function actionViewposition($id)
+    {
+        $model =  PositionMinistry::findOne($id);
+        // If its more conditions in findOne: 
+        // Class::findOne(['field1' => param1, 'field2' => param2])
+
+        return $this->render('/positionministry/view', [
+            'model' => $model,
         ]);
     }
 
