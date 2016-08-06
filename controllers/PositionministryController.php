@@ -63,10 +63,46 @@ class PositionministryController extends Controller
         $model = new PositionMinistry();
         $model->ministry_id = $id;
         $ministry = Ministry::findOne($id);
-        // var_dump(Yii::$app->request->post()); exit;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'ministry_id' => $model->ministry_id]);
-        } else {
+
+        if(Yii::$app->request->post())
+        {
+            $post = Yii::$app->request->post('PositionMinistry');
+            # Create new position if position_id is empty
+            if($post['position_id'])
+            {
+
+              # Adding position's description and save
+              if($model->load(Yii::$app->request->post()) && $model->save()){
+                return $this->redirect(['ministry/position/', 'id' => $id]);
+              }
+              else
+                echo "error1";
+
+            }
+            else
+            {
+              $position = new Position();
+              $position->name = $post['position_name'];
+
+              if($position->save())
+              {
+                if ($model->load(Yii::$app->request->post()))
+                {
+                    $model->position_id = $position->id;
+                    if($model->save()){
+                      return $this->redirect(['ministry/position/', 'id' => $id]);
+                    }
+                }
+                else
+                  echo "error";
+
+              }
+              else
+                echo "error";
+            }
+        }
+        else
+        {
             return $this->render('create', [
                 'model' => $model,
                 'id' => $id,

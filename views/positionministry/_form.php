@@ -20,29 +20,10 @@ use yii\web\JsExpression;
         <?= $form->field($model, 'ministry_id')->hiddenInput()->label(false) ?>
         <?= $form->field($model, 'position_id')->hiddenInput()->label(false) ?>
 
-        <?= Html::label('Cargo', 'for'); ?>
-        <?= Typeahead::widget([
-              'name' => 'position_name',
-              'options' => ['placeholder' => 'Digitar cargo ...','required'=>true],
-              'pluginOptions' => ['highlight'=>true],
-              'dataset' => [
-                  [
-                      'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('value')",
-                      'display' => 'name',
-                      'displayKey' => 'id',
-                      // 'prefetch' => $baseUrl . '/samples/countries.json',
-                      'remote' => [
-                          'url' => Url::to(['positionministry/get-positions']) . '?q=%QUERY',
-                          'wildcard' => '%QUERY',
-                      ]
-                  ]
-              ]
-          ])
-          ?>
-
-          <label for="position">Cargo</label>
+          <?= Html::label('Cargo', 'for'); ?>
           <?= AutoComplete::widget([
-              'name' => 'position_name',
+              'model' => $model,
+              'attribute' => 'position_name',
               'clientOptions' => [
                   'source' => new JsExpression("function(request, response) {
                                   $.getJSON('".Url::to(["positionministry/get-positions"])."', {

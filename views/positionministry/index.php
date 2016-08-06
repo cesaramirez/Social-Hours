@@ -28,19 +28,16 @@ $this->endBlock();
             ['class' => 'yii\grid\SerialColumn'],
 
             [
-              'attribute'=>'position.name',
-              'format' =>'string'
-            ],
-            [
-              'attribute' => 'active',
-              'value' => 'position.active',
-              'filter' => ['0' => 'No', '1' => 'Si']
-            ],
-            [
               'attribute' => 'position_name',
               'value' => 'position.name',
-              'filter' => []
             ],
+
+            [
+              'attribute' => 'active',
+              'value' => 'active',
+              'filter' => ['0' => 'No', '1' => 'Si']
+            ],
+
 
               ['class' => 'yii\grid\ActionColumn',
               'header' => 'Herramientas',

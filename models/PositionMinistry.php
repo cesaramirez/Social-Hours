@@ -18,6 +18,7 @@ use Yii;
  */
 class PositionMinistry extends \yii\db\ActiveRecord
 {
+    public $position_name;
     /**
      * @inheritdoc
      */
@@ -32,8 +33,10 @@ class PositionMinistry extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ministry_id', 'position_id', 'active'], 'required'],
+            [['ministry_id', 'active','position_name'], 'required'],
             [['ministry_id', 'position_id'], 'integer'],
+            [['description'], 'string', 'max' => 250],
+            [['position_name'], 'required'],
             [['ministry_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ministry::className(), 'targetAttribute' => ['ministry_id' => 'id']],
             [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => Position::className(), 'targetAttribute' => ['position_id' => 'id']],
         ];
