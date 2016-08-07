@@ -7,7 +7,7 @@ use kartik\detail\DetailView;
 /* @var $model app\models\PositionMinistry */
 
 $this->title = $model->position->name;
-$this->params['breadcrumbs'][] = ['label' => 'Position Ministries', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Cargos de Ministerio', 'url' => ['ministry/position/','id'=>$model->ministry_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="position-ministry-view">
@@ -16,10 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
       Html::a('Atras', ['/ministry/position','id' => $model->ministry_id],
       ['class' => 'btn btn-success', 'style' => 'color:white'])
       .' '.
-      Html::a('Actualizar', ['/ministry/updateposition', 'id' => $model->id],
+      Html::a('Actualizar', ['/positionministry/update', 'id' => $model->id,
+                             'ministry_id' => $model->ministry_id],
       ['class' => 'btn btn-primary', 'style' => 'color:white'])
       .' '.
-      Html::a('Delete', ['/positionministry/delete', 'id' => $model->id], [
+      Html::a('Delete', ['/positionministry/delete', 'id' => $model->id,
+                        'ministry_id'=>$model->ministry_id
+                        ], 
+      [
          'class' => 'btn btn-danger',
          'style' => 'color:white',
          'data' => [

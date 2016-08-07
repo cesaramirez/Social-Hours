@@ -44,13 +44,14 @@ $this->endBlock();
               'template' => '{view} {update} {delete}',
               'buttons' => [
                   'view' => function ($url, $model, $key) {
-                                  $url = '/ministry/viewposition/';
+                                  $url = '/positionministry/view/';
 
                                   return Html::a(
                                     '<span class="glyphicon glyphicon-eye-open"></span>', 
                                   [
                                     $url,
-                                    'id'=> $model->id
+                                    'id'=> $model->id,
+                                    'ministry_id' => $model->ministry_id
                                   ], 
                                   [
                                   'title' => 'Ver',
@@ -71,13 +72,14 @@ $this->endBlock();
                                   ]);
                                 },
                   'delete' => function ($url, $model, $key) {
-                                  $url = '/ministry/deleteposition/';
+                                  $url = '/positionministry/delete/';
 
                                   return Html::a(
                                     '<span class="glyphicon glyphicon-trash"></span>', 
                                   [
                                     $url,
-                                    'id'=> $model->id
+                                    'id'=> $model->id,
+                                    'ministry_id' => $model->ministry_id
                                   ], 
                                   [
                                   'title' => 'Eliminar',

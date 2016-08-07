@@ -24,7 +24,7 @@ use yii\web\JsExpression;
           <?= AutoComplete::widget([
               'model' => $model,
               'attribute' => 'position_name',
-              'value' => $model->position->name,
+              'options' => ['required' => ''],
               'clientOptions' => [
                   'source' => new JsExpression("function(request, response) {
                                   $.getJSON('".Url::to(["positionministry/get-positions"])."', {

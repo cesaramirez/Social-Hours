@@ -120,12 +120,35 @@ class PositionministryController extends Controller
      */
     public function actionUpdate($id, $ministry_id)
     {
-        $model = PositionMinistry::findOne(['id' => $id, 
-                                   'ministry_id' =>$ministry_id]);
+        $model = $this->findModel($id, $ministry_id);
+        
+        if ($model->load(Yii::$app->request->post())) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'ministry_id' => $model->ministry_id]);
+            # Retrieve all positions from Position Table
+            $arrayPosition = Position::find()->asArray()->all();
+            foreach ($arrayPosition as $key => $value) {
+                $arra[] = $value['name'];
+            }
+
+            # If position_name (POST value) is not in Position Table
+            if(!in_array($model->position_name,$arra))
+            {
+                $newPosition = new Position();
+                $newPosition->name = $model->position_name;
+                $newPosition->save();
+                $model->position_id = $newPosition->id;
+            }
+            
+            if($model->save())
+            {
+                return $this->redirect(['/positionministry/view', 'id' => $model->id, 
+                                        'ministry_id' => $model->ministry_id
+                                       ]);
+            }
+            
         } else {
+            $position = Position::findOne($model->position_id);
+            $model->position_name = $position->name;
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -141,9 +164,11 @@ class PositionministryController extends Controller
      */
     public function actionDelete($id, $ministry_id)
     {
-        $this->findModel($id, $ministry_id)->delete();
+        $model = $this->findModel($id, $ministry_id);
 
-        return $this->redirect(['index']);
+        if($model->delete()){
+            return $this->redirect(['/ministry/position/', 'id' => $ministry_id]);
+        }    
     }
 
     public function actionGetPositions($term)

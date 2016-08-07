@@ -33,7 +33,7 @@ class PositionMinistry extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ministry_id', 'active','position_name'], 'required'],
+            [['ministry_id', 'active'], 'required'],
             [['ministry_id', 'position_id'], 'integer'],
             [['description'], 'string', 'max' => 250],
             [['position_name'], 'required'],

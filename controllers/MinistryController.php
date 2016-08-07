@@ -129,17 +129,6 @@ class MinistryController extends Controller
         ]);
     }
 
-    public function actionViewposition($id)
-    {
-        $model =  PositionMinistry::findOne($id);
-        // If its more conditions in findOne: 
-        // Class::findOne(['field1' => param1, 'field2' => param2])
-
-        return $this->render('/positionministry/view', [
-            'model' => $model,
-        ]);
-    }
-
     /**
      * Finds the Ministry model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
