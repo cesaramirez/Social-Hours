@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Position;
-use app\models\PositionSearch;
+use app\models\search\PositionSearch;
 use app\components\AccessFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

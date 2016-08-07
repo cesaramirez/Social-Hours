@@ -4,10 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Member;
-use app\models\MemberSearch;
+use app\models\search\MemberSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Query;
+use yii\helpers\Json;
+use app\components\AccessFilter;
 
 /**
  * MemberController implements the CRUD actions for Member model.
@@ -25,6 +28,10 @@ class MemberController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            [
+              'class' => AccessFilter::className(),
+              'overrideSecurity' => ['Get']
             ],
         ];
     }
@@ -107,6 +114,34 @@ class MemberController extends Controller
         $this->findModel($id, $country_id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     **/
+    public function actionGet($term)
+    {
+      $query = new Query;
+
+      $query->select(["id","CONCAT(name,' ',last_name) AS full_name"])
+          ->from('member')
+          ->where('CONCAT(name,\' \',last_name) LIKE "%' . $term .'%"')
+          ->orderBy('name');
+
+      $command = $query->createCommand();
+      $data = $command->queryAll();
+      $out = [];
+
+      foreach ($data as $d) {
+          $out[] = ['value' => $d['full_name'],
+                    'id' => $d['id']
+                   ];
+      }
+        echo Json::encode($out);
     }
 
     /**

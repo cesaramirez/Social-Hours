@@ -28,7 +28,8 @@ $this->endBlock();
             'description',
 
               ['class' => 'yii\grid\ActionColumn',
-              'template' => '{update}',
+               'template' => '{update}',
+               'controller' => 'action',
               'header' => 'Herramientas',
               'headerOptions'=>['style'=>'text-align: center'],
               'contentOptions'=>['style'=>'text-align: center']],

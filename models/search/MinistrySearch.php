@@ -1,16 +1,16 @@
 <?php
 
-namespace app\models;
+namespace app\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Affiliate;
+use app\models\Ministry;
 
 /**
- * AffiliateSearch represents the model behind the search form about `app\models\Affiliate`.
+ * MinistrySearch represents the model behind the search form about `app\models\Ministry`.
  */
-class AffiliateSearch extends Affiliate
+class MinistrySearch extends Ministry
 {
     /**
      * @inheritdoc
@@ -20,7 +20,7 @@ class AffiliateSearch extends Affiliate
         return [
             [['id'], 'integer'],
             [['name'], 'safe'],
-            [['allows_ministry', 'active'], 'boolean'],
+            [['active'], 'boolean'],
         ];
     }
 
@@ -42,7 +42,7 @@ class AffiliateSearch extends Affiliate
      */
     public function search($params)
     {
-        $query = Affiliate::find();
+        $query = Ministry::find();
 
         // add conditions that should always apply here
 
@@ -61,7 +61,6 @@ class AffiliateSearch extends Affiliate
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'allows_ministry' => $this->allows_ministry,
             'active' => $this->active,
         ]);
 

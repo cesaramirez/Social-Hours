@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Affiliate;
-use app\models\AffiliateSearch;
+use app\models\search\AffiliateSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
