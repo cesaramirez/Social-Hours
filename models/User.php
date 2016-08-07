@@ -23,6 +23,11 @@ use app\models\Member;
  */
 class User extends ActiveRecord Implements IdentityInterface
 {
+
+    const SCENARIO_UPDATE = 'update';
+    const SCENARIO_CREATE = 'create';
+
+    public $member_name;
     /**
      * @inheritdoc
      */
@@ -37,8 +42,10 @@ class User extends ActiveRecord Implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password', 'role_id', 'email',
-              'active', 'reset_password'], 'required'],
+            [['username', 'password', 'role_id',
+              'active', 'reset_password'], 'required','on' => self::SCENARIO_CREATE],
+            [['username', 'role_id',
+              'active', 'reset_password'], 'required','on' => self::SCENARIO_UPDATE],
             [['role_id', 'active', 'reset_password'], 'integer'],
             [['username'], 'string', 'max' => 45],
             [['password'], 'string', 'max' => 500],

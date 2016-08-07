@@ -5,14 +5,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Action */
 
-$this->title = 'Update Action: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Actions', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Actualizar Acción: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => "Acciones de Controlador {$model->controller->name}", 
+                                  'url' => ['controler/action','id' => $model->controller_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->name];
+
 ?>
 <div class="action-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

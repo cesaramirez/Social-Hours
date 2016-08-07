@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Ministry;
-use app\models\MinistrySearch;
+use app\models\search\MinistrySearch;
 use app\models\PositionMinistry;
 use app\models\search\PositionMinistrySearch;
 use yii\web\Controller;
