@@ -24,7 +24,7 @@ use yii\web\JsExpression;
           <?= AutoComplete::widget([
               'model' => $model,
               'attribute' => 'position_name',
-              'options' => ['required' => ''],
+              'options' => ['required' => '','class' => 'capitalize form-control'],
               'clientOptions' => [
                   'source' => new JsExpression("function(request, response) {
                                   $.getJSON('".Url::to(["positionministry/get-positions"])."', {
@@ -34,6 +34,17 @@ use yii\web\JsExpression;
                   'select' => new JsExpression("function( event, ui ){
                                     $('#positionministry-position_id').val(ui.item.id)
                                   }"),
+
+                //   'open' => new JsExpression("function( event, ui ){
+                //                     $('#positionministry-position_name').on('blur',function(){
+                //                         var id = $('#positionministry-position_id').val();
+                //                         console.log($('#positionministry-position_id').val());                                        
+                //                         console.log(id)
+                //                         if(id == ''){
+                //                             $('#positionministry-position_name').val('')
+                //                         }
+                //                     });
+                //                   }"),
               ]
           ]);
           ?>
@@ -47,5 +58,15 @@ use yii\web\JsExpression;
       </div>
       <?php ActiveForm::end(); ?>
     </div>
-
 </div>
+<script>
+    $(function(){                   
+        $('#positionministry-position_name').on('focus',function(){
+            $('#positionministry-position_name').on('keyup',function(e){
+                if(e.keyCode != 32){
+                    $('#positionministry-position_id').val('');    
+                }    
+            })
+        }); 
+    });  
+</script>

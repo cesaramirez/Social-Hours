@@ -46,10 +46,10 @@ class PositionministryController extends Controller
      * @param integer $ministry_id
      * @return mixed
      */
-    public function actionView($id, $ministry_id)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id, $ministry_id),
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -118,9 +118,9 @@ class PositionministryController extends Controller
      * @param integer $ministry_id
      * @return mixed
      */
-    public function actionUpdate($id, $ministry_id)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($id, $ministry_id);
+        $model = $this->findModel($id);
         
         if ($model->load(Yii::$app->request->post())) {
 
@@ -162,9 +162,9 @@ class PositionministryController extends Controller
      * @param integer $ministry_id
      * @return mixed
      */
-    public function actionDelete($id, $ministry_id)
+    public function actionDelete($id)
     {
-        $model = $this->findModel($id, $ministry_id);
+        $model = $this->findModel($id);
 
         if($model->delete()){
             return $this->redirect(['/ministry/position/', 'id' => $ministry_id]);
@@ -200,9 +200,9 @@ class PositionministryController extends Controller
      * @return PositionMinistry the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $ministry_id)
+    protected function findModel($id)
     {
-        if (($model = PositionMinistry::findOne(['id' => $id, 'ministry_id' => $ministry_id])) !== null) {
+        if (($model = PositionMinistry::findOne(['id' => $id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -40,55 +40,11 @@ $this->endBlock();
 
 
               ['class' => 'yii\grid\ActionColumn',
-              'header' => 'Herramientas',
-              'template' => '{view} {update} {delete}',
-              'buttons' => [
-                  'view' => function ($url, $model, $key) {
-                                  $url = '/positionministry/view/';
-
-                                  return Html::a(
-                                    '<span class="glyphicon glyphicon-eye-open"></span>', 
-                                  [
-                                    $url,
-                                    'id'=> $model->id,
-                                    'ministry_id' => $model->ministry_id
-                                  ], 
-                                  [
-                                  'title' => 'Ver',
-                                  ]);
-                                },
-                  'update' => function ($url, $model, $key) {
-                                  $url = '/positionministry/update/';
-
-                                  return Html::a(
-                                    '<span class="glyphicon glyphicon-edit"></span>', 
-                                  [
-                                    $url,
-                                    'id'=> $model->id,
-                                    'ministry_id' => $model->ministry_id
-                                  ], 
-                                  [
-                                  'title' => 'Actualizar',
-                                  ]);
-                                },
-                  'delete' => function ($url, $model, $key) {
-                                  $url = '/positionministry/delete/';
-
-                                  return Html::a(
-                                    '<span class="glyphicon glyphicon-trash"></span>', 
-                                  [
-                                    $url,
-                                    'id'=> $model->id,
-                                    'ministry_id' => $model->ministry_id
-                                  ], 
-                                  [
-                                  'title' => 'Eliminar',
-                                  ]);
-                                },
+               'header' => 'Herramientas',
+               'controller' => 'positionministry',              
+               'headerOptions'=>['style'=>'text-align: center'],
+               'contentOptions'=>['style'=>'text-align: center']
               ],
-              
-              'headerOptions'=>['style'=>'text-align: center'],
-              'contentOptions'=>['style'=>'text-align: center']],
           ],
       ]); ?>
 
