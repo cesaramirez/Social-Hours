@@ -14,19 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
   <?php
   $update_delete =
       Html::a('Atras', ['/ministry'],
-      ['class' => 'btn btn-success', 'style' => 'color:white'])
+      ['class' => 'btn btn-danger', 'style' => 'color:white'])
       .' '.
       Html::a('Actualizar', ['update', 'id' => $model->id],
-      ['class' => 'btn btn-primary', 'style' => 'color:white'])
-      .' '.
-      Html::a('Delete', ['delete', 'id' => $model->id], [
-         'class' => 'btn btn-danger',
-         'style' => 'color:white',
-         'data' => [
-             'confirm' => '¿Seguro que quiere eliminar este ministerio?',
-             'method' => 'post',
-         ],
-       ]);
+      ['class' => 'btn btn-primary', 'style' => 'color:white']);
    ?>
 
   <?=

@@ -34,7 +34,7 @@ $this->endBlock();
 
             [
               'attribute' => 'active',
-              'value' => 'active',
+              'format' => 'boolean',
               'filter' => ['0' => 'No', '1' => 'Si']
             ],
 

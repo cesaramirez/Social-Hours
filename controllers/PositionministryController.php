@@ -81,25 +81,34 @@ class PositionministryController extends Controller
             }
             else
             {
-              $position = new Position();
-              $position->name = $post['position_name'];
-
-              if($position->save())
-              {
-                if ($model->load(Yii::$app->request->post()))
+                $existPosition = Position::findOne(['name' => trim($post['position_name'])]);
+                if(empty($existPosition))
                 {
-                    $model->position_id = $position->id;
-                    if($model->save()){
-                      return $this->redirect(['ministry/position/', 'id' => $id]);
-                    }
+                    $position = new Position();
+                    $position->name = $post['position_name'];
+
+                    if($position->save())
+                    {
+                        if ($model->load(Yii::$app->request->post()))
+                        {
+                            $model->position_id = $position->id;
+                            if($model->save()){
+                            return $this->redirect(['ministry/position/', 'id' => $id]);
+                            }
+                        }
+                    }                   
                 }
                 else
-                  echo "error";
-
-              }
-              else
-                echo "error";
-            }
+                {
+                        if ($model->load(Yii::$app->request->post()))
+                        {
+                            $model->position_id = $existPosition->id;
+                            if($model->save()){
+                            return $this->redirect(['ministry/position/', 'id' => $id]);
+                            }
+                        }
+                }
+             }
         }
         else
         {
@@ -123,30 +132,33 @@ class PositionministryController extends Controller
         $model = $this->findModel($id);
         
         if ($model->load(Yii::$app->request->post())) {
+            
+            $post = Yii::$app->request->post('PositionMinistry');
+            $existPosition = Position::findOne(['name' => trim($post['position_name'])]);
 
-            # Retrieve all positions from Position Table
-            $arrayPosition = Position::find()->asArray()->all();
-            foreach ($arrayPosition as $key => $value) {
-                $arra[] = $value['name'];
-            }
-
-            # If position_name (POST value) is not in Position Table
-            if(!in_array($model->position_name,$arra))
+            if(empty($existPosition))
             {
                 $newPosition = new Position();
                 $newPosition->name = $model->position_name;
                 $newPosition->save();
                 $model->position_id = $newPosition->id;
+                if($model->save())
+                {
+                return $this->redirect(['ministry/position/', 'id' => $model->ministry_id]);
+                }
             }
-            
-            if($model->save())
+            else
             {
-                return $this->redirect(['/positionministry/view', 'id' => $model->id, 
-                                        'ministry_id' => $model->ministry_id
-                                       ]);
+                $model->position_id = $existPosition->id;
+                if($model->save())
+                {
+                return $this->redirect(['ministry/position/', 'id' => $model->ministry_id]);
+                }
             }
             
-        } else {
+        } 
+        else 
+        {
             $position = Position::findOne($model->position_id);
             $model->position_name = $position->name;
             return $this->render('update', [

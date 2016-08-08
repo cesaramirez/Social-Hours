@@ -34,9 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'active',
                 'format' => 'boolean'
               ],
+              'ISO',
 
               ['class' => 'yii\grid\ActionColumn',
               'header' => 'Herramientas',
+              'template' => '{view} {update}',
               'headerOptions' => ['style' => 'text-align: center'],
               'contentOptions' => ['style' => 'text-align: center']
               ],

@@ -13,7 +13,6 @@ use app\models\PositionMinistry;
 class PositionMinistrySearch extends PositionMinistry
 {
     public $active;
-    public $position_name;
     /**
      * @inheritdoc
      */

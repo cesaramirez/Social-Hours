@@ -8,7 +8,7 @@ use yii\helpers\Html;
 
 $this->title = 'Crear Cargo del Ministerio: ' . $ministry->name;
 $this->params['breadcrumbs'][] = ['label' => 'Cargos de Ministerio', 'url' => ['/ministry/position/' . $ministry->id]];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $ministry->name;
 ?>
 <div class="position-ministry-create">
 

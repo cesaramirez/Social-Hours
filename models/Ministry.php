@@ -43,8 +43,8 @@ class Ministry extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'active' => 'Active',
+            'name' => 'Nombre',
+            'active' => 'Activo',
         ];
     }
 

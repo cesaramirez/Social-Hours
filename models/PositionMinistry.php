@@ -55,6 +55,7 @@ class PositionMinistry extends \yii\db\ActiveRecord
             'description' => 'Descripción',
             'ministry' => 'Ministerio',
             'position' => 'Cargo',
+            'position_name' => 'Nombre de Posición'
         ];
     }
 

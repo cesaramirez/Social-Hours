@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\search;
 
 use Yii;
 use yii\base\Model;
@@ -20,7 +20,6 @@ class PositionSearch extends Position
         return [
             [['id'], 'integer'],
             [['name'], 'safe'],
-            [['active'], 'boolean'],
         ];
     }
 
@@ -60,8 +59,7 @@ class PositionSearch extends Position
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'active' => $this->active,
+            'id' => $this->id
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

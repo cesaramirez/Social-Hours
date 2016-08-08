@@ -11,21 +11,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="country-view">
     <?php
-    $update_delete =
+    $footer =
     Html::a('Atras', ['/country'],
-    ['class' => 'btn btn-success', 'style' => 'color:white'])
+    ['class' => 'btn btn-danger', 'style' => 'color:white'])
     .' '.
     Html::a('Actualizar', ['update', 'id' => $model->id],
-    ['class' => 'btn btn-primary', 'style' => 'color:white'])
-    .' '.
-    Html::a('Delete', ['delete', 'id' => $model->id], [
-       'class' => 'btn btn-danger',
-       'style' => 'color:white',
-       'data' => [
-           'confirm' => '¿Seguro que quiere eliminar este pais?',
-           'method' => 'post',
-       ],
-     ]);
+    ['class' => 'btn btn-primary', 'style' => 'color:white']);
      ?>
   <?=
       DetailView::widget([
@@ -36,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
       'panel'=>[
           'heading'=>'Pais # ' . $model->id,
           'type'=>DetailView::TYPE_PRIMARY,
-          'footer' => $update_delete
+          'footer' => $footer
       ],
       'enableEditMode' => false,
       'attributes' => [

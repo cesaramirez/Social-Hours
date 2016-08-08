@@ -54,7 +54,9 @@ use yii\web\JsExpression;
 
       </div>
       <div class="box-footer">
-            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::a('Atras', ['/ministry/position','id' => $model->ministry_id],
+            ['class' => 'btn btn-danger', 'style' => 'color:white']) ?>
       </div>
       <?php ActiveForm::end(); ?>
     </div>

@@ -7,19 +7,18 @@ use kartik\detail\DetailView;
 /* @var $model app\models\Position */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Positions', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Cargos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="position-view">
     <p>
-        <!-- <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?> -->
+        <?php
+        $footer =  Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary',
+                                                                          'style' => 'color:white'])
+         .' '.
+            Html::a('Atras', ['/position/'],
+            ['class' => 'btn btn-danger', 'style' => 'color:white']);
+        ?> 
     </p>
 
     <?=
@@ -31,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'panel'=>[
             'heading'=>'Cargo # ' . $model->id,
             'type'=>DetailView::TYPE_PRIMARY,
-            'footer' => '<a href="/position/" class="btn btn-danger" style="color:white">Atras</a>'
+            'footer' => $footer
         ],
         'enableEditMode' => false,
         'attributes' => [
