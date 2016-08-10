@@ -29,7 +29,7 @@ $this->endBlock();
             'description',
             ['class' => 'yii\grid\ActionColumn',
               'header' => 'Herramientas',
-              'template' => '{action} {edit}',
+              'template' => '{action} {update}',
               'headerOptions'=>['style'=>'text-align: center'],
               'contentOptions'=>['style'=>'text-align: center'],
               'buttons'=>[
@@ -38,11 +38,11 @@ $this->endBlock();
                             'title' => 'Acciones',
                     ]);
                 },
-                'edit' => function ($url, $model, $key) {
-                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                            'title' => 'Actualizar',
-                    ]);
-                },
+                // 'edit' => function ($url, $model, $key) {
+                //     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                //             'title' => 'Actualizar',
+                //     ]);
+                // },
               ]
             ],
           ],

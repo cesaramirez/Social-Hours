@@ -72,6 +72,7 @@ class CountryController extends Controller
         $model = new Country();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash("success", "Pais Creado");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -91,6 +92,7 @@ class CountryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash("success", "Pais Actualizado");
             return $this->redirect(['/country']);
         } else {
             return $this->render('update', [
@@ -108,7 +110,7 @@ class CountryController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Yii::$app->session->setFlash("success", "Pais Eliminado");
         return $this->redirect(['index']);
     }
 

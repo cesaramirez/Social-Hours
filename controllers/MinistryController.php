@@ -74,7 +74,8 @@ class MinistryController extends Controller
         $model = new Ministry();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash("success", "Ministerio Creado");
+            return $this->redirect(['/ministry']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -93,7 +94,8 @@ class MinistryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash("success", "Ministerio Actualizado");
+            return $this->redirect(['/ministry']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -110,7 +112,7 @@ class MinistryController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Yii::$app->session->setFlash("danger", "Ministerio Eliminado");
         return $this->redirect(['index']);
     }
 

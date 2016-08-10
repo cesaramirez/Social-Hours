@@ -13,11 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="ministry-view">
   <?php
   $update_delete =
-      Html::a('Atras', ['/ministry'],
-      ['class' => 'btn btn-danger', 'style' => 'color:white'])
-      .' '.
       Html::a('Actualizar', ['update', 'id' => $model->id],
-      ['class' => 'btn btn-primary', 'style' => 'color:white']);
+      ['class' => 'btn btn-primary', 'style' => 'color:white'])
+      .' '.
+      Html::a('Atras', ['/ministry'],
+      ['class' => 'btn btn-danger', 'style' => 'color:white']);
    ?>
 
   <?=

@@ -26,6 +26,11 @@ class AffiliateController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            [
+              'class' => AccessFilter::className(),
+              'overrideSession' => [],
+              'overrideSecurity' => []
+            ],
         ];
     }
 
@@ -66,7 +71,8 @@ class AffiliateController extends Controller
         $model = new Affiliate();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash("success", "Filial Creada");
+            return $this->redirect(['/affiliate']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -85,7 +91,8 @@ class AffiliateController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash("success", "Filial Actualizada");
+            return $this->redirect(['/affiliate/update']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -102,7 +109,7 @@ class AffiliateController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Yii::$app->session->setFlash("danger", "Filial Eliminada");
         return $this->redirect(['index']);
     }
 

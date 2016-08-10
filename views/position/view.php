@@ -13,8 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="position-view">
     <p>
         <?php
-        $footer =  Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary',
-                                                                          'style' => 'color:white'])
+        $footer =  Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary',                                                            'style' => 'color:white'])
          .' '.
             Html::a('Atras', ['/position/'],
             ['class' => 'btn btn-danger', 'style' => 'color:white']);

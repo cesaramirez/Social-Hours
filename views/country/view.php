@@ -12,11 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="country-view">
     <?php
     $footer =
-    Html::a('Atras', ['/country'],
-    ['class' => 'btn btn-danger', 'style' => 'color:white'])
-    .' '.
     Html::a('Actualizar', ['update', 'id' => $model->id],
-    ['class' => 'btn btn-primary', 'style' => 'color:white']);
+    ['class' => 'btn btn-primary', 'style' => 'color:white'])
+    .' '.
+    Html::a('Atras', ['/country'],
+    ['class' => 'btn btn-danger', 'style' => 'color:white']);
      ?>
   <?=
       DetailView::widget([

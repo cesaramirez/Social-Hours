@@ -11,8 +11,10 @@ use Yii;
  * @property string $name
  * @property string $friendly_name
  * @property string $description
+ * @property string $module_id
  *
  * @property Action[] $actions
+ * @property Module[] $modules
  */
 class Controler extends \yii\db\ActiveRecord
 {
@@ -32,9 +34,13 @@ class Controler extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'friendly_name'], 'required'],
+            [['name', 'friendly_name', 'module_id'], 'required'],
+            [['module_id'], 'integer'],
             [['name', 'friendly_name'], 'string', 'max' => 100],
             [['description'], 'string', 'max' => 500],
+            [['module_id'], 'exist', 'skipOnError' => true, 
+             'targetClass' => Module::className(), 'targetAttribute' => 
+                                                    ['module_id' => 'id']], 
         ];
     }
 
@@ -48,6 +54,7 @@ class Controler extends \yii\db\ActiveRecord
             'name' => 'Nombre',
             'friendly_name' => 'Nombre Amigable',
             'description' => 'Descripción',
+            'module_id' => 'module_id'
         ];
     }
 
@@ -63,8 +70,8 @@ class Controler extends \yii\db\ActiveRecord
      * @inheritdoc
      * @return \app\models\query\ControllerQuery the active query used by this AR class.
      */
-    public static function find()
+    public function getModule()
     {
-        return new \app\models\query\ControllerQuery(get_called_class());
+        return $this->hasOne(Module::className(), ['id' => 'module_id']);
     }
 }

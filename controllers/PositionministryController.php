@@ -73,10 +73,9 @@ class PositionministryController extends Controller
 
               # Adding position's description and save
               if($model->load(Yii::$app->request->post()) && $model->save()){
+                Yii::$app->session->setFlash("success", "Cargo de Ministerio Creado");   
                 return $this->redirect(['ministry/position/', 'id' => $id]);
               }
-              else
-                echo "error1";
 
             }
             else
@@ -93,6 +92,7 @@ class PositionministryController extends Controller
                         {
                             $model->position_id = $position->id;
                             if($model->save()){
+                            Yii::$app->session->setFlash("success", "Cargo de Ministerio Creado");
                             return $this->redirect(['ministry/position/', 'id' => $id]);
                             }
                         }
@@ -104,6 +104,7 @@ class PositionministryController extends Controller
                         {
                             $model->position_id = $existPosition->id;
                             if($model->save()){
+                            Yii::$app->session->setFlash("success", "Cargo de Ministerio Creado");
                             return $this->redirect(['ministry/position/', 'id' => $id]);
                             }
                         }
@@ -144,6 +145,7 @@ class PositionministryController extends Controller
                 $model->position_id = $newPosition->id;
                 if($model->save())
                 {
+                Yii::$app->session->setFlash("success", "Cargo de Ministerio Actualizado");
                 return $this->redirect(['ministry/position/', 'id' => $model->ministry_id]);
                 }
             }
@@ -179,6 +181,7 @@ class PositionministryController extends Controller
         $model = $this->findModel($id);
 
         if($model->delete()){
+            Yii::$app->session->setFlash("danger", "Cargo de Ministerio Eliminado");
             return $this->redirect(['/ministry/position/', 'id' => $ministry_id]);
         }    
     }
@@ -214,7 +217,7 @@ class PositionministryController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = PositionMinistry::findOne(['id' => $id])) !== null) {
+        if (($model = PositionMinistry::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -9,7 +9,7 @@ use app\components\AccessFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\db\IntegrityException;
 /**
  * PositionController implements the CRUD actions for Position model.
  */
@@ -72,6 +72,7 @@ class PositionController extends Controller
         $model = new Position();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash("success", "Cargo Creado");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -91,6 +92,7 @@ class PositionController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash("success", "Cargo Actualizado");
             return $this->redirect(['/position']);
         } else {
             return $this->render('update', [
@@ -107,9 +109,16 @@ class PositionController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        try {
+            $this->findModel($id)->delete();
+        
+            Yii::$app->session->setFlash("danger", "Cargo Eliminado");
+            return $this->redirect(['index']);
+        } catch (IntegrityException $e) {
+            Yii::$app->session->setFlash("danger", "Llave Error");
+            return $this->redirect(['index']);
+        }
+        
     }
 
     /**

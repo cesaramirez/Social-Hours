@@ -7,6 +7,7 @@ use yii\base\ActionFilter;
 use app\models\Controler;
 use app\models\Action;
 use app\models\RolePermissions;
+use app\models\Module;
 
 class AccessFilter extends ActionFilter{
 
@@ -33,7 +34,18 @@ class AccessFilter extends ActionFilter{
                         $c->name = $action->controller->id;
                         $c->friendly_name= $action->controller->id;
                         $c->description = "Controlador creado automaticamente";
+                        $c->module_id = Module::findOne(['code'=>'SEG'])->id;
                         $c->save();
+                    }
+                    else{
+                        $m = Module::findOne(['id' => $c->module_id]);
+                        if(!empty($m)){
+                            if(!$m->active){
+                                 return Yii::$app
+                               ->getResponse()
+                               ->redirect('site/unauthorized');
+                            }
+                        }
                     }
                     $a = Action::findByController(
                          $action->controller->id,
