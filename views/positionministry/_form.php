@@ -34,17 +34,6 @@ use yii\web\JsExpression;
                   'select' => new JsExpression("function( event, ui ){
                                     $('#positionministry-position_id').val(ui.item.id)
                                   }"),
-
-                //   'open' => new JsExpression("function( event, ui ){
-                //                     $('#positionministry-position_name').on('blur',function(){
-                //                         var id = $('#positionministry-position_id').val();
-                //                         console.log($('#positionministry-position_id').val());                                        
-                //                         console.log(id)
-                //                         if(id == ''){
-                //                             $('#positionministry-position_name').val('')
-                //                         }
-                //                     });
-                //                   }"),
               ]
           ]);
           ?>

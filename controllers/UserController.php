@@ -117,11 +117,11 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash("success", "¡El Usuario se actualizo Exitosamente!");
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
-                'model' => $model,
-                'items' => $items
+                'model' => $model
             ]);
         }
     }
